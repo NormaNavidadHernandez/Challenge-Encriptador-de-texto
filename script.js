@@ -1,29 +1,50 @@
-// script.js
-document.getElementById('encrypt-btn').addEventListener('click', function() {
-    let text = document.getElementById('input-text').value;
-    let encryptedText = encryptText(text);
-    document.getElementById('output-message').textContent = encryptedText;
-});
+const cipherRules = {
+    'e': 'enter',
+    'i': 'imes',
+    'a': 'ai',
+    'o': 'ober',
+    'u': 'ufat'
+};
 
-document.getElementById('decrypt-btn').addEventListener('click', function() {
-    let text = document.getElementById('input-text').value;
-    let decryptedText = decryptText(text);
-    document.getElementById('output-message').textContent = decryptedText;
-});
-
-document.getElementById('copy-btn').addEventListener('click', function() {
-    let text = document.getElementById('output-message').textContent;
-    navigator.clipboard.writeText(text).then(function() {
-        alert('Texto copiado al portapapeles');
-    });
-});
-
-function encryptText(text) {
-    // Lógica de encriptación simple (puedes reemplazarla con la lógica que prefieras)
-    return text.split('').reverse().join('');
+function normalizeText(text) {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z\s]/g, '');
 }
 
-function decryptText(text) {
-    // Lógica de desencriptación correspondiente
-    return text.split('').reverse().join('');
+function encrypt(text) {
+    text = normalizeText(text);
+    return text.replace(/[eioua]/g, match => cipherRules[match]);
 }
+
+function decrypt(text) {
+    text = normalizeText(text);
+    for (let key in cipherRules) {
+        const value = cipherRules[key];
+        text = text.split(value).join(key);
+    }
+    return text;
+}
+
+document.getElementById('encryptButton').addEventListener('click', () => {
+    const input = document.getElementById('inputText').value;
+    const output = encrypt(input);
+    document.getElementById('outputText').value = output;
+});
+
+document.getElementById('decryptButton').addEventListener('click', () => {
+    const input = document.getElementById('inputText').value;
+    const output = decrypt(input);
+    document.getElementById('outputText').value = output;
+});
+
+document.getElementById('copyButton').addEventListener('click', () => {
+    const outputText = document.getElementById('outputText');
+    outputText.select();
+    document.execCommand('copy');
+});
+
+
+

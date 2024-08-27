@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Encriptación</title>
+    <title>Encriptador/Desencriptador</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="input-section">
-            <h2>Ingrese el texto aquí</h2>
-            <textarea id="input-text" placeholder="Solo letras minúsculas y sin acentos"></textarea>
-            <div class="button-group">
-                <button id="encrypt-btn">Encriptar</button>
-                <button id="decrypt-btn">Desencriptar</button>
+        <h1>Encriptador/Desencriptador</h1>
+        <div class="text-areas">
+            <div class="text-area-wrapper">
+                <textarea id="inputText" placeholder="Escribe aquí tu texto..."></textarea>
+                <div class="button-group">
+                    <button id="encryptButton" class="action-button">Encriptar</button>
+                    <button id="decryptButton" class="action-button">Desencriptar</button>
+                </div>
             </div>
-        </div>
-        <div class="output-section">
-            <img src="busqueda.jfif" alt="Ilustración">
-            <p id="output-message">Ningún mensaje fue encontrado</p>
-            <button id="copy-btn">Copiar</button>
+            <div class="text-area-wrapper">
+                <textarea id="outputText" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+                <button id="copyButton" class="copy-button">Copiar</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
+
