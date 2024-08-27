@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    margin: auto;
     padding: 20px;
     }
     
@@ -31,19 +31,22 @@ body {
     .text-areas {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    gap: 20px;
+        
     }
     
     .text-area-wrapper {
-    width: 48%;
+    width: 50%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
     }
     
     textarea {
     width: 100%;
     height: 200px;
-    padding: 20px;
+    padding: 10;
     font-size: 18px;
     border-radius: 15px;
     border: none;
